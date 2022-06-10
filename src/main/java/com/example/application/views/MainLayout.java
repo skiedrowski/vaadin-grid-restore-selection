@@ -1,7 +1,7 @@
 package com.example.application.views;
 
 
-import com.example.application.views.list.ListView;
+import com.example.application.views.defaulteq.ClientListView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -114,7 +114,8 @@ public class MainLayout extends AppLayout {
 
     private MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[]{ //
-                new MenuItemInfo("List", "la la-th", ListView.class), //
+                new MenuItemInfo("DefaultEq", "la la-th", ClientListView.class), //
+                new MenuItemInfo("IdStyleEq", "la la-th", com.example.application.views.idstyle.ClientListView.class), //
 
         };
     }
