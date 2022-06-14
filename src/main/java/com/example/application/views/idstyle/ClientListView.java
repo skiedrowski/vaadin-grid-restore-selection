@@ -33,18 +33,15 @@ public class ClientListView extends Div {
         grid.addColumn("client").setHeader("Client");
         grid.setItems(q -> clientService.fetchClients(q.getOffset(), q.getLimit()));
 
+        clientService.setGrid(grid);
+
         final Button btnUpdateSelectedItems = new Button("Update selected");
         btnUpdateSelectedItems.addClickListener(e -> {
-            final var storedSelection = grid.getSelectedItems();
-
             grid.getSelectedItems().forEach(c -> {
                 clientService.updateClient(c.getId(), UUID.randomUUID().toString());
             });
 
             grid.getDataProvider().refreshAll();
-            if (!storedSelection.isEmpty()) grid.asMultiSelect().select(storedSelection);
-
-            Notification.show("Selection: " + grid.getSelectedItems().stream().map(i -> "" + i.getId() + " (" + i.getVersion() + "): " + i.getClient()).collect(Collectors.joining("\n")));
         });
 
         add(btnUpdateSelectedItems, grid);
